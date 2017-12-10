@@ -21,12 +21,10 @@ router.post('/student', jsonParser, (req,res) => {
     checkExist.on('end', () => {
         if (!duplicates) {
             created = true;
-            let query = client.query('INSERT INTO STUDENTS(SID, FIRST_NAME, LAST_NAME) VALUES($1, $2, $3)'
-            + 'ON CONFLICT (SID) DO UPDATE SET FIRST_NAME = excluded.FIRST_NAME, LAST_NAME = excluded.LAST_NAME;'
-            , [studentInfo.sid, studentInfo.firstName, studentInfo.lastName]);
+            let query = client.query('INSERT INTO STUDENTS(SID, FIRST_NAME, LAST_NAME) VALUES($1, $2, $3)', [studentInfo.sid, studentInfo.firstName, studentInfo.lastName]);
     
             studentInfo.records.forEach((record) => {
-                query = client.query('INSERT INTO COURSES(SID, COURSE_NAME, SCORE) VALUES($1, $2, $3)', [studentInfo.sid, record.course, record.score]);
+                query = client.query('INSERT INTO COURSES(SID, COURSE_NAME, SCORE) VALUES($1, $2, $3)', [studentInfo.sid, record.course_name, record.score]);
             });
     
             query = client.query('SELECT * FROM STUDENTS WHERE SID =' + studentInfo.sid);
@@ -111,10 +109,25 @@ router.get('/course/:cid',(req,res)=>{
     let results = {};
     results.students = [];
     const cid = req.params.cid;
-    let query = client.query("SELECT * FROM STUDENTS WHERE SID IN (SELECT SID FROM COURSES WHERE COURSE_NAME ='" + cid + "')");
+    let query = client.query("SELECT * FROM (STUDENTS JOIN COURSES ON STUDENTS.SID = COURSES.SID) WHERE COURSE_NAME ='" + cid + "'");
     
     query.on('row', (row) => {
         results.students.push(row);
+    });
+    
+    query.on('end', () => {
+        res.json(results);
+    });
+});
+
+// Course API - Read data 
+router.get('/course/',(req,res)=>{
+    let results = {};
+    results.course = [];
+    let query = client.query("SELECT DISTINCT(COURSE_NAME) FROM COURSES");
+    
+    query.on('row', (row) => {
+        results.course.push(row['course_name']);
     });
     
     query.on('end', () => {

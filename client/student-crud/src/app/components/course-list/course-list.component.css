@@ -1,0 +1,16 @@
+.item-course-info {
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#list-course {
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+#student-table {
+    width: 80%;
+    margin: 30px auto;
+}

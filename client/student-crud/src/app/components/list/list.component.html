@@ -1,0 +1,15 @@
+<div [hidden] = "this.data.showUpdateForm === false">
+    <app-form></app-form>
+</div>
+<div id="list-student">
+  <div class="ui horizontal list" *ngFor = "let student of allStudentsInfo">
+      <div id="item-student-info" class="item">
+        <img class="ui avatar image" src="../../../assets/avatar1.png">
+        <div class="content">
+          <div class="header">{{student['first_name']}} {{student[last_name]}}</div>
+          Student ID {{student['sid']}}
+        </div>
+        <img id="item-student-edit" class="ui avatar image" src="../../../assets/edit.png" (click)="editStudent(student['sid'])">
+      </div>
+  </div>
+</div>

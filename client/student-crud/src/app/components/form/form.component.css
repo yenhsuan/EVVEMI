@@ -1,0 +1,14 @@
+#add-student-form {
+    margin-top: 25px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+#add-course-form {
+    margin-left : 40px;
+    margin-right : 40px;
+}
+
+.remove-icon {
+    cursor: pointer;
+}

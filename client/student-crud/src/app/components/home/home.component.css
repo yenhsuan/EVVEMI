@@ -1,0 +1,87 @@
+.header {
+    height: 95vh;
+    background-color: 	#f2f2f2;
+    position: relative;
+}
+
+.header-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.header-primary {
+    text-transform: uppercase;
+    color: #222222;
+    backface-visibility: hidden;
+}
+
+.header-primary-main {
+    display: block;
+    font-size: 48px;
+    letter-spacing: 5px;
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+}
+
+.header-primary-sub {
+    display: block;
+    font-size: 16px;
+    letter-spacing: 5px;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+}
+
+.btn {
+    border-radius:15px;
+    font-size: 14px;
+}
+.btn-move-from-bottom {
+    animation-name: moveInBottom;
+    animation-duration: .4s; 
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(150px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

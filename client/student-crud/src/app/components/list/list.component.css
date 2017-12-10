@@ -1,0 +1,18 @@
+#item-student-info {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#item-student-edit {
+    opacity: 0.3;
+}
+
+#item-student-edit:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+#list-student {
+    margin: 50px 100px 50px 100px;
+
+}

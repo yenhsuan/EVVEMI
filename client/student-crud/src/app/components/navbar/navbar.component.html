@@ -1,0 +1,20 @@
+<div class="ui pointing menu">
+    <a class="item" [routerLink]="['/start']" [ngClass]="{'active': this.location.path()=='/home'}" (click) ="reset()">
+      Home
+    </a>
+    <a class="item" [routerLink]="['/list']" [ngClass]="{'active': this.location.path()=='/list'} " (click) ="reset()">
+      Students
+    </a>
+    <a class="item" [routerLink]="['/course-list']" [ngClass]="{'active': this.location.path()=='/course-list'}" (click) ="reset()">
+      Courses
+    </a>
+
+    <div class="right menu">
+      <a class="item right" [routerLink]="['/create']" [ngClass]="{'active': this.location.path()=='/create'}" (click) ="reset()">
+        <i class="add icon"></i> Add Record
+      </a>
+      <a class="ui item">
+          Logout
+      </a>
+    </div>
+  </div>

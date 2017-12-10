@@ -1,0 +1,54 @@
+<div id="add-student-form">
+  <div class="ui form">
+    <div class="field" >
+      <label>Student ID</label>
+      <input type="number" placeholder="Student ID" maxlength="12" minlength="6" [(ngModel)]="newStudentInfo['sid']" [disabled] = "this.location.path() == '/list'">
+    </div>
+
+    <div class="field" >
+      <label>First Name</label>
+      <div class="ui input">
+          <input type="text" placeholder="First Name" [(ngModel)]="newStudentInfo['firstName']">
+      </div>
+    </div>
+
+    <div class="field" >
+        <label>Last Name</label>
+        <div class="ui input">
+            <input type="text" placeholder="Last Name" [(ngModel)]="newStudentInfo['lastName']">
+        </div>
+    </div>
+
+    <div class="field" >
+        <label>Course Record</label>
+        <div ng class="ui relaxed divided list" *ngFor = "let record of newStudentInfo['records']; let i = index">
+            <div class="item">
+              <i class="large file middle aligned icon"></i>
+              <div class="content">
+                <a class="header">{{record['course_name']}}</a>
+                <div class="description">Grade: {{record['score']}}</div>
+              </div>
+              <i class="large remove middle aligned icon red remove-icon" style="padding-left: 30px" (click) = "removeCourse(i)"></i>
+            </div>
+          </div>
+    </div>
+
+    <div class="field">
+      <label>Add Course Record</label>
+        <form id="add-course-form" class="ui form" style="margin-left: 30px">
+          <div class="field">
+            <label>Course</label>
+            <input type="text" name="course-name" placeholder="Course Name" [(ngModel)]="newCourseName">
+          </div>
+          <div class="field">
+            <label>Score</label>
+            <input type="number" name="course-score" placeholder="Scores" [(ngModel)]="newCourseScore">
+          </div>
+          <button class="ui button green" type="submit" (click)="addCourse()" [disabled] = "!(newStudentInfo['sid'] && (newCourseName.trim()) && newCourseScore)">Add</button>
+        </form>
+    </div>
+    <button class="ui button blue" type="submit" (click)="addStudent()" *ngIf= "this.location.path() == '/create'" [disabled] = "!(newStudentInfo['sid'] && (newStudentInfo['firstName'].trim()) && (newStudentInfo['lastName']).trim())">Submit</button>
+    <button class="ui button yellow" type="submit" (click)="updateStudent()" *ngIf= "this.location.path() == '/list'" [disabled] = "!(newStudentInfo['sid'] && (newStudentInfo['firstName'].trim()) && (newStudentInfo['lastName']).trim())">Update</button>
+    <button class="ui button red" type="submit" (click)="deleteStudent()" *ngIf= "this.location.path() == '/list'">Delete</button>          
+  </div>
+</div>

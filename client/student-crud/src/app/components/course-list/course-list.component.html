@@ -1,0 +1,38 @@
+<div id="list-course">
+  <div class="ui horizontal list" *ngFor = "let course of coursesList">
+      <div class="item item-course-info" (click)="getStudentsListByCourse(course)">
+        <img class="ui avatar image" src="../../../assets/course.png">
+        <div class="content">
+          <div class="header">{{course}}</div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div id="list-students-in-course" [hidden] = "studentsInCourseList.length == 0">
+    <table id="student-table" class="ui very basic celled table">
+        <thead>
+          <tr>
+            <th>Students</th>
+            <th>Grade</th>
+          </tr>
+       </thead>
+        <tbody *ngFor = "let record of studentsInCourseList">
+          <tr>
+            <td>
+              <h4 class="ui image header">
+                <img src="../../../assets/avatar1.png" class="ui mini rounded image">
+                <div class="content">
+                  {{record['first_name']}} {{record['last_name']}}
+                  <div class="sub header">Student ID: {{record['sid']}}
+                </div>
+              </div>
+            </h4></td>
+            <td>
+              Grade: {{record['score']}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+  
